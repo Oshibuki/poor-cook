@@ -6,7 +6,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "build": "npm run convert && cross-env VITE_APP_BUILD_TIME=$(date +%s) vite-ssg build",
+    "build": "npx vite build",
     "convert": "tsx scripts/convert.ts",
     "dev": "cross-env VITE_APP_BUILD_TIME=$(date +%s) vite --port 3333 --open --host",
     "lint": "eslint .",

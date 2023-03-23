@@ -7,7 +7,6 @@ import Layouts from 'vite-plugin-vue-layouts'
 import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import NutUIResolver from '@nutui/nutui/dist/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import Markdown from 'vite-plugin-vue-markdown'
@@ -24,6 +23,8 @@ Object.assign(process.env, {
 })
 
 export default defineConfig({
+  publicPath: './',
+  base: './',
   resolve: {
     alias: {
       '~/': `${path.resolve(__dirname, 'src')}/`,
@@ -86,7 +87,11 @@ export default defineConfig({
       // allow auto import and register components used in markdown
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       dts: 'src/components.d.ts',
-      resolvers: [NutUIResolver(), ElementPlusResolver()],
+      resolvers: [IconsResolver({
+        prefix: 'Icon',
+      }), ElementPlusResolver(
+        { importStyle: 'css', ssr: true },
+      )],
     }),
 
     // https://github.com/antfu/unocss

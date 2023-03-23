@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
+import { Collection, Timer } from '@element-plus/icons-vue'
 import type { InventoryItem } from '~/data/food'
 
 const iStore = useInventoryStore()
@@ -93,23 +94,38 @@ const getStatus = function (stuff: InventoryItem) {
 const onSelectChange = function (name: string) {
   rStore.toggleStuff(name)
 }
-
-const dateTypeChange = function (value: string) {
-  state.currentDateType = value
-}
-
-const categoryChange = function (value: string) {
-  state.currentCategory = value
-}
 </script>
 
 <template>
-  <div class="common-layout h-sm">
-    <nut-menu>
-      <nut-menu-item v-model="state.currentCategory" :options="state.category" @change="categoryChange" />
-      <nut-menu-item v-model="state.currentDateType" :options="state.dateType" @change="dateTypeChange" />
-    </nut-menu>
-    <nut-empty v-if="filteredInventory.length === 0" description="无数据" />
+  <div class="h-sm">
+    <div style="background-color: #F5F7FA;">
+      <div class="inventoryFilter">
+        <Collection style="width: 1em; height: 1em; margin-right: 8px" />
+        <el-select v-model="state.currentCategory" placeholder="分类" size="large">
+          <el-option
+            v-for="item in state.category"
+            :key="item.value"
+            :label="item.text"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
+      <div class="inventoryFilter">
+        <Timer style="width: 1em; height: 1em; margin-right: 8px" />
+        <el-select v-model="state.currentDateType" placeholder="日期">
+          <el-option
+            v-for="item in state.dateType"
+            :key="item.value"
+            :label="item.text"
+            :value="item.value"
+          />
+        </el-select>
+      </div>
+    </div>
+    <el-empty
+      v-if="filteredInventory.length === 0"
+      description="库藏空空如也Σ(っ °Д °;)っ"
+    />
     <el-row v-else mt-5>
       <el-col
         v-for="stuff in filteredInventory"
@@ -147,6 +163,15 @@ const categoryChange = function (value: string) {
 </template>
 
 <style lang="scss" scoped>
+.inventoryFilter{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.inventoryFilterLabel {
+
+}
 .time {
   font-size: 12px;
   color: #999;
@@ -162,10 +187,5 @@ const categoryChange = function (value: string) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.button {
-  padding: 0;
-  min-height: auto;
 }
 </style>

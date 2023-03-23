@@ -70,7 +70,7 @@ const submitForm = () => {
 
 <template>
   <el-row justify="center">
-    <el-col :xs="24" :md="6">
+    <el-col :xs="24" :md="12">
       <el-form
         :model="ruleForm" label-width="auto" label-position="top" require-asterisk-position="right"
         class="demo-ruleForm"

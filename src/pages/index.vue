@@ -5,7 +5,7 @@ const rStore = useRecipeStore()
 
 <template>
   <el-row justify="center">
-    <el-col :xs="24" :md="6">
+    <el-col>
       <div text-4xl m="t-4">
         <button
           class="cursor-pointer transition hover:(text-green-600) active:text-green-800"
