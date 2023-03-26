@@ -1,5 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 import type { LocationQueryValue } from 'vue-router'
+import { useRecipeStore } from './recipe'
 import type { InventoryItem } from '~/data/food'
 
 const namespace = 'inventory'
@@ -16,15 +18,18 @@ export const useInventoryStore = defineStore('inventory', () => {
    * 搜索关键字
    */
   const keyword = ref('')
-  const category = ref('all')
-  const dateType = ref('all')
+  const rStore = useRecipeStore()
 
   // 当前库存
   const curInventory = useStorage(`${namespace}:stuff`, Array<InventoryItem>)
   // const curTools = ref(new Set<string>())
   const curTool = useStorage(`${namespace}:tool`, '')
 
-  const selectedInventory = computed(state => Array.from(curInventory.value))
+  interface InventoryInfo {
+    id: string
+    name: string
+  }
+  const selectedInventory = useStorage(`${namespace}:selectedInventory`, Array<InventoryInfo>)
   // const selectedTools = computed(() => Array.from(curTools.value))
   // const selectedTools = ref('')
 
@@ -47,6 +52,21 @@ export const useInventoryStore = defineStore('inventory', () => {
   function reset() {
     curInventory.value = []
     curTool.value = ''
+  }
+
+  function toggleSelectedInventory(stuffItem: InventoryItem) {
+    if (selectedInventory.value.find(i => i.id === stuffItem.id)) {
+      selectedInventory.value = selectedInventory.value.filter(i => i.id !== stuffItem.id)
+      rStore.curStuff = new Set(selectedInventory.value.map(i => i.name))
+    }
+    else {
+      selectedInventory.value.push({ id: stuffItem.id, name: stuffItem.name })
+      rStore.curStuff.add(stuffItem.name)
+    }
+  }
+
+  function isSelected(id: string) {
+    return selectedInventory.value.find(i => i.id === id)
   }
 
   function addInventory(stuffItem: InventoryItem) {
@@ -76,8 +96,6 @@ export const useInventoryStore = defineStore('inventory', () => {
 
   return {
     keyword,
-    category,
-    dateType,
     curTool,
     curMode,
     curInventory,
@@ -87,7 +105,8 @@ export const useInventoryStore = defineStore('inventory', () => {
     toggleTools,
     reset,
     setMode,
-
+    isSelected,
+    toggleSelectedInventory,
     addInventory,
     delInventory,
     getInventoryById,

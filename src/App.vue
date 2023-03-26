@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // import { installPrompt } from './utils/pwa'
 import { RouterView } from 'vue-router'
+import { useHead } from '@vueuse/head'
 import { isDark } from '~/composables'
 
 // https://github.com/vueuse/head
@@ -24,8 +25,7 @@ useHead({
 </script>
 
 <template>
-  <RouterView />
-  <!-- <ClientOnly>
-    <ReloadPrompt />
-  </ClientOnly> -->
+  <van-config-provider :theme="isDark.value ? 'dark' : 'light'">
+    <RouterView />
+  </van-config-provider>
 </template>

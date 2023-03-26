@@ -6,7 +6,7 @@ import generateSitemap from 'vite-ssg-sitemap'
 import Layouts from 'vite-plugin-vue-layouts'
 import IconsResolver from 'unplugin-icons/resolver'
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import Markdown from 'vite-plugin-vue-markdown'
@@ -59,8 +59,6 @@ export default defineConfig({
         'vue',
         'vue-router',
         'vue/macros',
-        '@vueuse/head',
-        '@vueuse/core',
       ],
       dts: 'src/auto-imports.d.ts',
       dirs: [
@@ -68,16 +66,12 @@ export default defineConfig({
         'src/store',
       ],
       vueTemplate: true,
-      resolvers: [ElementPlusResolver(
-        {
-          importStyle: 'sass',
-        },
-      ),
+      resolvers: [VantResolver(),
       // Auto import icon components
       // 自动导入图标组件
-      IconsResolver({
-        prefix: 'Icon',
-      })],
+        IconsResolver({
+          prefix: 'Icon',
+        })],
     }),
 
     // https://github.com/antfu/unplugin-vue-components
@@ -89,9 +83,7 @@ export default defineConfig({
       dts: 'src/components.d.ts',
       resolvers: [IconsResolver({
         prefix: 'Icon',
-      }), ElementPlusResolver(
-        { importStyle: 'css', ssr: true },
-      )],
+      }), VantResolver()],
     }),
 
     // https://github.com/antfu/unocss
@@ -150,14 +142,6 @@ export default defineConfig({
     // Visit http://localhost:3333/__inspect/ to see the inspector
     Inspect(),
   ],
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@import "@nutui/nutui/dist/styles/variables.scss";',
-      },
-    },
-  },
-
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',

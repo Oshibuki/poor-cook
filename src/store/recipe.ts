@@ -1,4 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { useStorage } from '@vueuse/core'
 
 const namespace = 'cook'
 
@@ -15,7 +16,6 @@ export const useRecipeStore = defineStore('recipe', () => {
    */
   const keyword = ref('')
 
-  // can not exported
   const curStuff = useStorage(`${namespace}:stuff`, new Set<string>())
   // const curTools = ref(new Set<string>())
   const curTool = useStorage(`${namespace}:tool`, '一口大锅')
@@ -76,6 +76,7 @@ export const useRecipeStore = defineStore('recipe', () => {
     keyword,
     curTool,
     curMode,
+    curStuff,
     selectedStuff,
 
     clearKeyWord: () => { keyword.value = '' },

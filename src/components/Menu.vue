@@ -3,6 +3,12 @@ import { toggleDark } from '~/composables'
 </script>
 
 <template>
+  <!-- <van-nav-bar
+    title="标题"
+    left-text="返回"
+    left-arrow
+    @click-left="$router.back()"
+  /> -->
   <nav text-xl p="t-6">
     <RouterLink class="icon-btn mx-2" px-2 to="/" title="首页">
       <div i-ri-home-2-line />

@@ -3,6 +3,7 @@ import { createPinia } from 'pinia'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
+// import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 
 import '@unocss/reset/tailwind.css'

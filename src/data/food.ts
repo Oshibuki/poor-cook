@@ -192,136 +192,136 @@ export const tools: StuffItem[] = [
 export const NameOptions = [
   {
     value: 'vegetable',
-    label: '蔬菜',
+    text: '蔬菜',
     children: [
       {
         value: '土豆',
-        label: '🥔 土豆',
+        text: '🥔 土豆',
       },
       {
         value: '胡萝卜',
-        label: '🥕 胡萝卜',
+        text: '🥕 胡萝卜',
       },
       {
         value: '花菜',
-        label: '🥦 花菜',
+        text: '🥦 花菜',
       },
       {
         value: '白萝卜',
-        label: '🥣 白萝卜',
+        text: '🥣 白萝卜',
       },
       {
         value: '西葫芦',
-        label: '🥒 西葫芦',
+        text: '🥒 西葫芦',
       },
       {
         value: '番茄',
-        label: '🍅 番茄',
+        text: '🍅 番茄',
         alias: '西红柿',
       },
       {
         value: '芹菜',
-        label: '🥬 芹菜',
+        text: '🥬 芹菜',
       },
       {
         value: '黄瓜',
-        label: '🥒 黄瓜',
+        text: '🥒 黄瓜',
       },
       {
         value: '洋葱',
-        label: '🧅 洋葱',
+        text: '🧅 洋葱',
       },
       {
         value: '莴笋',
-        label: '🎍 莴笋',
+        text: '🎍 莴笋',
       },
       {
         value: '菌菇',
-        label: '🍄 菌菇',
+        text: '🍄 菌菇',
       },
       {
         value: '茄子',
-        label: '🍆 茄子',
+        text: '🍆 茄子',
       },
       {
         value: '豆腐',
-        label: '🍲 豆腐',
+        text: '🍲 豆腐',
       },
       {
         value: '包菜',
-        label: '🥗 包菜',
+        text: '🥗 包菜',
       },
       {
         value: '白菜',
-        label: '🥬 白菜',
+        text: '🥬 白菜',
       },
     ],
   },
   {
     value: 'meat',
-    label: '肉类',
+    text: '肉类',
     children: [
       {
         value: '午餐肉',
-        label: '🥓 午餐肉',
+        text: '🥓 午餐肉',
       },
       {
         value: '香肠',
-        label: '🌭 香肠',
+        text: '🌭 香肠',
       },
       {
         value: '腊肠',
-        label: '🌭 腊肠',
+        text: '🌭 腊肠',
       },
       {
         value: '鸡肉',
-        label: '🐤 鸡肉',
+        text: '🐤 鸡肉',
       },
       {
         value: '猪肉',
-        label: '🐷 猪肉',
+        text: '🐷 猪肉',
       },
       {
         value: '鸡蛋',
-        label: '🥚 鸡蛋',
+        text: '🥚 鸡蛋',
       },
       {
         value: '虾',
-        label: '🦐 虾',
+        text: '🦐 虾',
       },
       {
         value: '牛肉',
-        label: '🐮 牛肉',
+        text: '🐮 牛肉',
       },
       {
         value: '骨头',
-        label: '🦴 骨头',
+        text: '🦴 骨头',
       },
       {
         value: '鱼',
-        label: '🐟 鱼',
+        text: '🐟 鱼',
       },
     ],
   },
   {
     value: 'staple',
-    label: '主食',
+    text: '主食',
     children: [
       {
         value: '面食',
-        label: '🍝 面食',
+        text: '🍝 面食',
       },
       {
         value: '面包',
-        label: '🍞 面包',
+        text: '🍞 面包',
       },
       {
         value: '米',
-        label: '🍚 米',
+        text: '🍚 米',
       },
       {
         value: '方便面',
-        label: '🍜 方便面',
+        text: '🍜 方便面',
       },
     ],
   },
@@ -371,3 +371,9 @@ export interface InventoryItem {
   description?: string
   category: string
 }
+
+export const category = [
+  { text: '蔬菜', value: 'vegetable' },
+  { text: '肉类', value: 'meat' },
+  { text: '主食', value: 'staple' },
+]

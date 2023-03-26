@@ -19,16 +19,14 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "@gtm-support/vue-gtm": "^1.6.0",
-    "@nutui/nutui": "^4.0.3",
     "@vueuse/core": "^9.13.0",
-    "@vueuse/head": "^1.0.26",
-    "element-plus": "^2.3.1",
+    "@vueuse/head": "^1.1.23",
     "moment": "^2.29.4",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.30",
     "prism-theme-vars": "^0.2.4",
+    "vant": "^4.1.1",
     "vue": "^3.2.47",
-    "vue-about-me": "^1.2.7",
     "vue-demi": "^0.13.11",
     "vue-router": "^4.1.6"
   },
