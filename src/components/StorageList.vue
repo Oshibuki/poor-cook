@@ -85,7 +85,7 @@ const filteredInventory = computed(() => {
     </van-empty>
     <van-cell-group
       v-else mt-5
-      inset
+      inset pb="50px"
     >
       <storage-item v-for="(stuff, index) in filteredInventory" :key="stuff" :index="index" :stuff="stuff" />
     </van-cell-group>

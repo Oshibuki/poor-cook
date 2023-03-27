@@ -67,7 +67,7 @@ const onSelectChange = function (stuff: InventoryItem) {
           {{ lastDays }}天后
         </van-tag>
         <div
-          text-right style="font-size:0.25rem;"
+          text-right style="font-size:0.5rem;"
           :text="active ? 'white dark:black' : 'black dark:white'"
         >
           {{ new Date(stuff.expirationDate).toLocaleDateString('zh-cn', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' }) }}
