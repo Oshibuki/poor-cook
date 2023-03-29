@@ -2,6 +2,7 @@
 // import { installPrompt } from './utils/pwa'
 import { RouterView } from 'vue-router'
 import { useHead } from '@vueuse/head'
+import { computed } from 'vue'
 import { isDark } from '~/composables'
 
 // https://github.com/vueuse/head
@@ -21,11 +22,15 @@ useHead({
   ],
 })
 
+const currentTheme = computed(() => {
+  return isDark.value ? 'dark' : 'light'
+})
+
 // installPrompt()
 </script>
 
 <template>
-  <van-config-provider :theme="isDark.value ? 'dark' : 'light'">
+  <van-config-provider :theme="currentTheme">
     <RouterView />
   </van-config-provider>
 </template>

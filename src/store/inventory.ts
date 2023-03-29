@@ -92,6 +92,8 @@ export const useInventoryStore = defineStore('inventory', () => {
 
   function findByIdAndDelete(id: string) {
     curInventory.value = curInventory.value.filter(i => i.id !== id)
+    selectedInventory.value = selectedInventory.value.filter(i => i.id !== id)
+    rStore.curStuff = new Set(selectedInventory.value.map(i => i.name))
   }
 
   return {
