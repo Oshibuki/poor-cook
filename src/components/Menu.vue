@@ -22,8 +22,8 @@ import { toggleDark } from '~/composables'
       <div i-ri-restaurant-2-fill />
     </RouterLink>
 
-    <RouterLink class="icon-btn mx-2 hover:text-blue-400" px-2 to="/addInventory" title="添加储备">
-      <div i-ri:add-circle-line />
+    <RouterLink class="icon-btn mx-2 hover:text-blue-400" px-2 to="/dataRetrive" title="导入导出数据">
+      <div i-ri-folder-2-line />
     </RouterLink>
   </nav>
 </template>
