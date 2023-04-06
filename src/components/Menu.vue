@@ -25,5 +25,9 @@ import { toggleDark } from '~/composables'
     <RouterLink class="icon-btn mx-2 hover:text-blue-400" px-2 to="/dataRetrive" title="导入导出数据">
       <div i-ri-folder-2-line />
     </RouterLink>
+
+    <a class="icon-btn mx-2 hover:text-blue-400" px-2 href="https://github.com/Oshibuki/poor-cook" title="项目地址">
+      <div i-ri-github-line />
+    </a>
   </nav>
 </template>

@@ -15,7 +15,8 @@ const progress = computed(() => {
 )
 const percentage = computed(() => {
   const numbers = progress.value.split('/').map(i => parseInt(i))
-  return Math.floor(numbers[0] / numbers[1] * 100)
+  const tmp = Math.floor(numbers[0] / numbers[1] * 100)
+  return tmp > 100 ? 100 : tmp
 })
 
 const status = computed(() => {
@@ -64,7 +65,7 @@ const onSelectChange = function (stuff: InventoryItem) {
     <template #value>
       <div @click.stop="onSelectChange(stuff)">
         <van-tag mb-1 p-1 round :type="status" cursor-pointer>
-          {{ lastDays }}天后
+          {{ lastDays >= 0 ? `${lastDays}天后` : '已过期' }}
         </van-tag>
         <div
           text-right style="font-size:0.5rem;"
