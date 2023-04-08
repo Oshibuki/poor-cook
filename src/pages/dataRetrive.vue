@@ -2,6 +2,9 @@
 import { showToast } from 'vant'
 
 function exportLocalStorageToJSON() {
+  alert(cordova)
+  const filePath = `${cordova.file.externalDataDirectory}` + 'poorfood.json'
+
   const data = {}
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i)
@@ -10,13 +13,22 @@ function exportLocalStorageToJSON() {
   const json = JSON.stringify(data)
   const blob = new Blob([json], { type: 'application/json' })
   const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = 'FoodData.json'
-  document.body.appendChild(a)
-  a.click()
-  document.body.removeChild(a)
-  URL.revokeObjectURL(url)
+
+  // Downloading the file
+  const filePromise = new Promise<string>((resolve, reject) => {
+    cordova.plugin.http.downloadFile(url, {}, { Accept: '*' }, filePath,
+      (entry) => {
+        resolve(entry.nativeURL)
+      },
+      (response) => {
+        reject(response.error)
+      })
+  })
+  filePromise
+    .then((res) => {
+      showToast('导出成功')
+    })
+    .catch(err => showToast(err))
 }
 
 function importJSONToLocalStorage() {

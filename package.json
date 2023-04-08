@@ -9,7 +9,7 @@
     "build": "npx vite build",
     "convert": "tsx scripts/convert.ts",
     "dev": "cross-env VITE_APP_BUILD_TIME=$(date +%s) vite --port 3333 --open --host",
-    "package" :"cp dist/* -r ../poorfood/www && cd ../poorfood && cordova build android",
+    "package" :"nr build && cp dist/* -r ../poorfood/www && cd ../poorfood && cordova build android",
     "lint": "eslint .",
     "postinstall": "npm run convert",
     "preview": "vite preview",

@@ -42,18 +42,24 @@ const onSelectChange = function (stuff: InventoryItem) {
 
 <template>
   <van-cell
-    text-xs center mb-3 p-2
+    text-xs center mb-3 p-2 rounded
     border="~ green-200 dark:green-800"
-    :bg="active ? 'green-600 opacity-90' : 'green-300 opacity-20'"
-    :text="active ? 'green-100' : 'green-800 dark:green-200'"
+    :bg="active ? 'green-300 opacity-90' : 'green-300 opacity-20'"
   >
     <template #title>
       <div
         text-left mb-2
       >
-        <span mr-2>{{ stuff.name }}</span>
+        <span
+          mr-2
+          :text="active ? 'white dark:black' : 'black dark:white'"
+        >{{ stuff.name }}</span>
         <RouterLink :to="{ path: '/editInventory', query: { id: stuff.id } }">
-          <van-tag p-1 round :type="status" cursor-pointer :style="{ backgroundColor: '#95d475' }">
+          <van-tag
+            p-1 round :type="status" cursor-pointer
+            :bg="active ? 'green-300 opacity-90' : 'green-300 opacity-20'"
+            :text="active ? 'white dark:black' : 'black dark:white'"
+          >
             修改
           </van-tag>
         </RouterLink>
@@ -64,7 +70,11 @@ const onSelectChange = function (stuff: InventoryItem) {
     </template>
     <template #value>
       <div @click.stop="onSelectChange(stuff)">
-        <van-tag mb-1 p-1 round :type="status" cursor-pointer>
+        <van-tag
+          mb-1 p-1 round cursor-pointer opacity="0.6"
+          :bg="status === 'danger' ? '#e74c3c' : status === 'success' ? '#1abc9c' : '#f39c12'"
+          :text="active ? 'white dark:black' : 'black dark:white'"
+        >
           {{ lastDays >= 0 ? `${lastDays}天后` : '已过期' }}
         </van-tag>
         <div

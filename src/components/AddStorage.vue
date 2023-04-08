@@ -187,7 +187,7 @@ const submitForm = () => {
       <van-field label="临近到期天数" :model-value="daysUntilExpiration" readonly />
     </van-cell-group>
     <div style="margin: 16px;">
-      <van-action-bar-button color="#79bbff" type="primary" text="添加" @click.stop="submitForm" />
+      <van-action-bar-button color="#3498db" type="primary" text="添加" @click.stop="submitForm" />
     </div>
   </van-form>
 </template>
